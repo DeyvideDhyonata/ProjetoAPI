@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./app/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
-    <title>Login</title>
+    <title>ProjetoAPI - Login</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 
         <div class="form-container sign-in">
             <form action="" class="logForm" method="POST">
-                <h1>ProjetoAPI - Login</h1>
+                <h1>Login</h1>
                     <div class="social-icons">
                         <!-- Site font awesome -->
                         <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -45,7 +45,7 @@
                     <i id="bi-slash" class="bi bi-eye-slash"></i>
                     <span class="span-required">Preencha a senha corretamente!</span>
 
-                    <a href="#">Esqueceu sua Senha?</a>
+                    <a href="./app/views/confirmeEmail.php">Esqueceu sua Senha?</a>
                     <button type="submit" class="btnEntrar">Entrar</button>
             </form>
         </div>

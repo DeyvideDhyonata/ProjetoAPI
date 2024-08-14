@@ -2,16 +2,47 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>ProjetoAPI - Perfil</title>
+    <title>ProjetoAPI - Confirme E-mail</title>
 </head>
 <body>
+
     <div class="container" id="container" >
 
         <div class="form-container sign-in">
-            <h1>Perfil</h1>
-            <img src="" alt="Imagem do Usuário">
+            <form action="" class="logForm" method="POST">
+                <h1>Login</h1>
+                    <div class="social-icons">
+                        <!-- Site font awesome -->
+                        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+
+                    <span>Digite suas credencias para entrar</span>
+
+                    <div class='alertCorreto alert-success' role='alert'>
+                        <span></span>
+                    </div>
+
+                    <div class='alertIncorreto alert-danger' role='alert'>
+                        <span></span>
+                    </div>
+
+                    <input type="email" name="email" class="logEmail required" placeholder="E-mail" oninput="verifEmail()">
+                    <span class="span-required">Preencha o email corretamente!</span>
+                    
+                    <input type="password" name="senha" class="logSenha required" placeholder="Senha" oninput="verifSenha()">
+                    <i class="bi bi-eye"></i>
+                    <i id="bi-slash" class="bi bi-eye-slash"></i>
+                    <span class="span-required">Preencha a senha corretamente!</span>
+
+                    <a href="./app/views/confirmeEmail.php">Esqueceu sua Senha?</a>
+                    <button type="submit" class="btnEntrar">Entrar</button>
+            </form>
         </div>
 
         <div class="form-container sign-up">
@@ -69,5 +100,9 @@
             </div>
         </div>
     </div>
+
+
+<script src="./app/assets/js/script.js"></script>
 </body>
 </html>
+

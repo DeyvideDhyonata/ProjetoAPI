@@ -119,7 +119,7 @@ formsLog.addEventListener('submit', async (event) => {
 
                 setTimeout(() => {
                     alertLogin_Sucesso.style.display = "none";
-                    window.location.assign("./perfil.php");
+                    window.location.assign("./app/views/perfil.php");
                 }, 1000);
             }else{
 
