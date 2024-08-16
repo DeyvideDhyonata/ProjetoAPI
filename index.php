@@ -64,11 +64,11 @@
                     <span>Crie sua conta</span>
 
                     <div class='alertcadIncorreto alert-dangercad' role='alert'>
-                        <span>Usuário não foi cadastrado!!</span>
+                        <span></span>
                     </div>
 
                     <div class='alertcadCorreto alert-successcad' role='alert'>
-                        <span>Usuário cadastrado com sucesso!!</span>
+                        <span></span>
                     </div>
 
                     <input type="text" name="nome" class="regNome required" placeholder="Nome" oninput="registerNome()">

@@ -177,6 +177,7 @@ formsCad.addEventListener('submit', async (event) => {
             if(resposta['erro'] == false){
 
                 alertSucesso.style.display = "block";
+                alertSucesso.innerHTML = resposta['msg'];
 
                 setTimeout(() => {
                     alertSucesso.style.display = "none";
