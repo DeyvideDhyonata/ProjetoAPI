@@ -340,3 +340,18 @@ body {
     background-color: #d1e7dd;
     border-color: #badbcc;
 }
+
+.imageUser{
+    border: 5px solid red;
+    border-radius: 100px;
+    height: 50%;
+    width: 50%;
+}
+
+.containerUser{
+    display: flex;
+    flex-direction: column;
+    border: 5px solid black;
+    width: 50%;
+    height: 40%;
+}
