@@ -4,6 +4,8 @@ require_once '../database/conexao.php';
 
 header('Content-Type: application/json');
 
+use Exception;
+
 class Api{
 
     private $conn;
@@ -11,22 +13,22 @@ class Api{
     public function __construct(){
 
         $acao = isset($_REQUEST['acao']) ? $_REQUEST['acao'] : null; 
-        // $return = array();
+    
 
         switch($acao){
-            case 'Inserir':
+            case 'inserir':
                 $this->Inserir();
                 break;
 
-            case 'Buscar':
+            case 'buscar':
                 $this->Buscar();
                 break;
 
-            case 'Alterar':
+            case 'alterar':
                 $this->Alterar();
                 break;
 
-            case 'Excluir':
+            case 'excluir':
                 $this->Excluir();
                 break;
                 
@@ -34,19 +36,33 @@ class Api{
     }
 
 
-    public function Inserir($nome, $sobrenome, $email, $senha){ 
+    public function Inserir($dados){ 
 
         $instancia = new Conexao();
 
         if($instancia){
 
             $conn = $instancia->getConnection();
-            
         }
 
-    
+        $stmt = "INSERT INTO dados_usuarios(nome_completo, email, senha, telefone) VALUES(?, ?, ?, ?)";
 
-        // $sql = "INSERT INTO dados_usuarios() VALUES()";
+        $sql = $conn->prepare($stmt);
+
+        if($sql){
+
+            throw new Exception("Prepare failed" .$conn->error);
+        }
+
+        $sql->bind_param('ssss', $dados['nome_completo'], $dados['email'], $dados['senha'], $dados['telefone']);
+        
+        if($sql->execute()){
+
+            echo "Registro inserido com sucesso!";
+        }else{
+
+            throw new Exception("Falha ao tentar registrar usuário");
+        }
     }
 
     public function Buscar(){
@@ -56,7 +72,6 @@ class Api{
         if($instancia){
 
             $conn = $instancia->getConnection();
-            
         }
 
         $sql = "SELECT * FROM dados_usuarios";

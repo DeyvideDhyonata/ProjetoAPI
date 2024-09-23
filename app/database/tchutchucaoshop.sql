@@ -17,13 +17,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `dados_usuarios`(
 	`id` int(11) primary key auto_increment,
-	`nome` varchar(150),
-	`sobrenome` varchar(150),
+	`nome_completo` varchar(120),
 	`email` varchar(200),
 	`senha` varchar(500),
-	`foto` varchar(150),
-	`video` varchar(150),
-	`data` DATETIME DEFAULT NOW()
+	`telefone` varchar(12)
 );
 
 CREATE TABLE `logs`(
