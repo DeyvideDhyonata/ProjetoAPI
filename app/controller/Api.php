@@ -4,7 +4,7 @@ require_once '../database/conexao.php';
 
 header('Content-Type: application/json');
 
-use Exception;
+// use Exception;
 
 class Api{
 
@@ -16,21 +16,21 @@ class Api{
     
 
         switch($acao){
-            case 'inserir':
-                $this->Inserir();
-                break;
+            // case 'inserir':
+            //     $this->Inserir($dados);
+            //     break;
 
             case 'buscar':
                 $this->Buscar();
                 break;
 
-            case 'alterar':
-                $this->Alterar();
-                break;
+            // case 'alterar':
+            //     $this->Alterar();
+            //     break;
 
-            case 'excluir':
-                $this->Excluir();
-                break;
+            // case 'excluir':
+            //     $this->Excluir();
+            //     break;
                 
         }
     }
@@ -45,18 +45,19 @@ class Api{
             $conn = $instancia->getConnection();
         }
 
-        $stmt = "INSERT INTO dados_usuarios(nome_completo, email, senha, telefone) VALUES(?, ?, ?, ?)";
+        $sql = "INSERT INTO usuario(nome_completo, email, senha, telefone) VALUES(?, ?, ?, ?)";
 
-        $sql = $conn->prepare($stmt);
+        $stmt = $conn->prepare($sql);
 
-        if($sql){
+        if(!$stmt){
 
-            throw new Exception("Prepare failed" .$conn->error);
+            throw new Exception("prepared failed" .$conn->error);
         }
 
-        $sql->bind_param('ssss', $dados['nome_completo'], $dados['email'], $dados['senha'], $dados['telefone']);
+        $stmt->bind_param("ssss", $dados['nome'], $dados['email'], $dados['senha'], $dados['telefone']);
+        $stmt->execute();
         
-        if($sql->execute()){
+        if($stmt->affected_rows >0){
 
             echo "Registro inserido com sucesso!";
         }else{
@@ -74,17 +75,17 @@ class Api{
             $conn = $instancia->getConnection();
         }
 
-        $sql = "SELECT * FROM dados_usuarios";
+        $sql = "SELECT * FROM usuario";
         $sql_query = $conn->query($sql);
 
         if($sql_query->num_rows >0){
 
             while($row = $sql_query->fetch_assoc()){
                 $usuarios[] = [
-                    'nome' => $row['nome'],
-                    'sobrenome' => $row['sobrenome'],
+                    'nome' => $row['nome_completo'],
                     'email' => $row['email'],
-                    'senha' => $row['senha']
+                    'senha' => $row['senha'],
+                    'telefone' => $row['telefone'],
                 ];
             }
             $msg = [
@@ -113,10 +114,14 @@ class Api{
     }
 }
 
-$nome = isset($_REQUEST['nome']) ? $_REQUEST['nome'] : null;
-$sobrenome = isset($_REQUEST['sobrenome']) ? $_REQUEST['sobrenome'] : null;
-$email = isset($_REQUEST['email']) ? $_REQUEST['email'] : null;
-$senha = isset($_REQUEST['senha']) ? $_REQUEST['senha'] : null;
+try{
 
 $get = new Api();
+}catch(Exception $e){
+
+    echo json_encode([
+        'status' => 'error', 
+        'message' => $e->getMessage()
+    ]);
+}
 
