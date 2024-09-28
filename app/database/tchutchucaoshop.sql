@@ -12,10 +12,10 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 --
--- Banco de dados: `treinamento`
+-- Banco de dados: `tchutchucaoshop`
 --
 
-CREATE TABLE `dados_usuarios`(
+CREATE TABLE `usuarios`(
 	`id` int(11) primary key auto_increment,
 	`nome_completo` varchar(120),
 	`email` varchar(200),
@@ -23,13 +23,3 @@ CREATE TABLE `dados_usuarios`(
 	`telefone` varchar(12)
 );
 
-CREATE TABLE `logs`(
-	`id` int(11) primary key auto_increment,
-	`id_usuarios` int(11),
-	`hora_entrada` timestamp,
-	`hora_saida` timestamp,
-	`ultima_alteracao` timestamp,
-	`ip` varchar(45),
-	`navegador` varchar(45),
-	`sistema` varchar(45)
-);
