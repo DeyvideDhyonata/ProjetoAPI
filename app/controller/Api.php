@@ -54,12 +54,14 @@ class Api{
             throw new Exception("prepared failed" .$conn->error);
         }
 
-        $stmt->bind_param("ssss", $dados['nome'], $dados['email'], $dados['senha'], $dados['telefone']);
+        $hash = password_hash($dados['senha'], PASSWORD_DEFAULT);
+
+        $stmt->bind_param("ssss", $dados['nome'], $dados['email'], $hash, $dados['telefone']);
         $stmt->execute();
         
         if($stmt->affected_rows >0){
 
-            echo "Registro inserido com sucesso!";
+            echo json_encode("Registro inserido com sucesso!");
         }else{
 
             throw new Exception("Falha ao tentar registrar usuário");
@@ -105,9 +107,38 @@ class Api{
         }
     }
 
-    public function Alterar(){
+    public function Alterar($id, $dados){
 
-    }
+        $instancia = new Conexao();
+
+        if($instancia){
+
+            $conn = $instancia->getConnection();
+        }
+
+        $novaSenha = password_hash($dados['senha'], PASSWORD_DEFAULT);
+
+        $sql = "UPDATE usuario set nome_completo = ?, email = ?, senha = ?, telefone = ? WHERE id = ?";
+
+        $stmt = $conn->prepare($sql);
+
+        if(!$stmt){
+
+            throw new Exception("Failed update".$conn->error);
+        }
+
+        $stmt->bind_param('sssss', $dados['nome'], $dados['email'], $novaSenha, $dados['telefone'], $id);
+        $stmt->execute();
+
+        if($stmt->affected_rows >0){
+
+            echo json_encode("Dados atualizados com sucesso!!");
+        }else{
+
+            throw new Exception("Erro, nenhuma alteração realizada");
+        }
+
+    }   
 
     public function Excluir(){
 
