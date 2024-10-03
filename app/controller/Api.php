@@ -4,8 +4,6 @@ require_once '../database/conexao.php';
 
 header('Content-Type: application/json');
 
-// use Exception;
-
 class Api{
 
     private $conn;
