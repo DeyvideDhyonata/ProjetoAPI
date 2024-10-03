@@ -16,22 +16,10 @@ class Api{
     
 
         switch($acao){
-            // case 'inserir':
-            //     $this->Inserir($dados);
-            //     break;
 
             case 'buscar':
                 $this->Buscar();
                 break;
-
-            // case 'alterar':
-            //     $this->Alterar();
-            //     break;
-
-            // case 'excluir':
-            //     $this->Excluir();
-            //     break;
-                
         }
     }
 
@@ -140,7 +128,37 @@ class Api{
 
     }   
 
-    public function Excluir(){
+    public function Excluir($id){
+
+
+        $instancia = new Conexao();
+
+        if($instancia){
+
+            $conn = $instancia->getConnection();
+        }
+
+        $sql = "DELETE FROM usuario WHERE id = ?";
+
+        $stmt = $conn->prepare($sql);
+        
+        if(!$stmt){
+
+            throw new Exception("Erro ao tentar statement");
+        }
+
+        $stmt->bind_param('s', $id);
+
+        $stmt->execute();
+
+        if($stmt->affected_rows >0){
+
+            echo json_encode("Usuário excluido com sucesso!!");
+        }else{
+
+            throw new Exception("Erro ao tentar excluir o usuário");
+        }
+
 
     }
 }
