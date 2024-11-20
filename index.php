@@ -41,8 +41,8 @@
                     <span class="span-required">Preencha o email corretamente!</span>
                     
                     <input type="password" name="senha" class="logSenha required" placeholder="Senha" oninput="verifSenha()">
-                    <i class="bi bi-eye"></i>
-                    <i id="bi-slash" class="bi bi-eye-slash"></i>
+                    <!-- <i class="bi bi-eye"></i>
+                    <i id="bi-slash" class="bi bi-eye-slash"></i> -->
                     <span class="span-required">Preencha a senha corretamente!</span>
 
                     <a href="./app/views/confirmeEmail.php">Esqueceu sua Senha?</a>
