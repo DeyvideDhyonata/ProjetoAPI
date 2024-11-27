@@ -25,7 +25,7 @@ CREATE TABLE `usuarios`(
 );
 
 
-CREATE TABLE 'servicos' (
+CREATE TABLE `servicos` (
 	`id` int(11) primary key auto_increment,
 	`id_usuario` varchar(22),
 	`data_servico` varchar(22),
