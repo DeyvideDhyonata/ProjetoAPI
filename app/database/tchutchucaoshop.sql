@@ -15,13 +15,16 @@ SET time_zone = "+00:00";
 -- Banco de dados: `tchutchucaoshop`
 --
 
-CREATE TABLE `usuario`(
+CREATE TABLE `usuarios`(
 	`id` int(11) primary key auto_increment,
+	`tipo_usuario` varchar(10),
 	`nome_completo` varchar(120),
 	`email` varchar(200),
 	`senha` varchar(500),
 	`telefone` varchar(12)
 );
 
-INSERT INTO usuarios(nome_completo, email, senha, telefone) VALUES('Deyvide Dhyonata Nunes Marques','deyvide@gmail.com','12345','11962563628');
+INSERT INTO usuarios(tipo_usuario, nome_completo, email, senha, telefone) VALUES('adm','Deyvide Dhyonata Nunes Marques','deyvide@gmail.com','12345','11999999999');
+INSERT INTO usuarios(tipo_usuario, nome_completo, email, senha, telefone) VALUES('adm','Matheus Eduardo Alves Muniz','matheus@gmail.com','12345','11999999999');
+INSERT INTO usuarios(tipo_usuario, nome_completo, email, senha, telefone) VALUES('adm','Jennifer da Silveira Santos','jennifer@gmail.com','12345','11999999999');
 
