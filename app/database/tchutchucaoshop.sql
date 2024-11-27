@@ -24,6 +24,14 @@ CREATE TABLE `usuarios`(
 	`telefone` varchar(12)
 );
 
+
+CREATE TABLE 'servicos' (
+	`id` int(11) primary key auto_increment,
+	`id_usuario` varchar(22),
+	`data_servico` varchar(22),
+	`tipo_servico` varchar(50) 
+);
+
 INSERT INTO usuarios(tipo_usuario, nome_completo, email, senha, telefone) VALUES('adm','Deyvide Dhyonata Nunes Marques','deyvide@gmail.com','12345','11999999999');
 INSERT INTO usuarios(tipo_usuario, nome_completo, email, senha, telefone) VALUES('adm','Matheus Eduardo Alves Muniz','matheus@gmail.com','12345','11999999999');
 INSERT INTO usuarios(tipo_usuario, nome_completo, email, senha, telefone) VALUES('adm','Jennifer da Silveira Santos','jennifer@gmail.com','12345','11999999999');
