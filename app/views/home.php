@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProjetoAPI - Esqueceu Senha?</title>
+    <title>Home</title>
 </head>
 <body>
-    
+    <h1>Home</h1>
+    <p>Aqui ficaria a parte onde mostra os serviços para o usuário ver</p>
 </body>

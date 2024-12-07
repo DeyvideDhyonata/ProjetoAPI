@@ -117,10 +117,19 @@ formsLog.addEventListener('submit', async (event) => {
 
                 // Trocar para página principal de perfil como exemplo, não esquecer.
 
-                setTimeout(() => {
-                    alertLogin_Sucesso.style.display = "none";
-                    window.location.assign("./app/views/perfil.php");
-                }, 1000);
+                if(resposta['usuario'] == 'adm'){
+
+                    setTimeout(() => {
+                        alertLogin_Sucesso.style.display = "none";
+                        window.location.assign("./app/views/adm_perfil.php");
+                    }, 1000);
+                }else{
+
+                    setTimeout(() => {
+                        alertLogin_Sucesso.style.display = "none";
+                        window.location.assign("./app/views/home.php");
+                    }, 1000);
+                }
             }else{
 
                 alertLogin_Falha.style.display = "block";
@@ -205,30 +214,6 @@ registerBtn.addEventListener('click', () => {
 
 loginBtn.addEventListener('click', () => {
     container.classList.remove("active");
-});
-
-btnEye.addEventListener('click', () => {
-    
-    const type = campos[1].type === "password" ? "text" : "password";
-
-    if(campos[1].type === "password"){
-
-        campos[1].type = type;
-        btnEye.style.display = "none";
-        btnEyeSlash.style.display = "block";
-    }
-});
-
-btnEyeSlash.addEventListener('click', () => {
-
-    const type = campos[1].type === "passsword" ? "text" : "password";
-
-    if(campos[1].type === "text"){
-
-        campos[1].type = type;
-        btnEyeSlash.style.display = "none";
-        btnEye.style.display = "block";
-    }
 });
 
 

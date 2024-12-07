@@ -45,7 +45,7 @@
                     <i id="bi-slash" class="bi bi-eye-slash"></i> -->
                     <span class="span-required">Preencha a senha corretamente!</span>
 
-                    <a href="./app/views/confirmeEmail.php">Esqueceu sua Senha?</a>
+                    <a href="">Esqueceu sua Senha?</a>
                     <button type="submit" class="btnEntrar">Entrar</button>
             </form>
         </div>
@@ -71,11 +71,11 @@
                         <span></span>
                     </div>
 
-                    <input type="text" name="nome" class="regNome required" placeholder="Nome" oninput="registerNome()">
+                    <input type="text" name="nome_completo" class="regNome required" placeholder="Nome Completo" oninput="registerNome()">
                     <span class="span-required">Preencha o nome corretamente!</span>
 
-                    <input type="text" name="sobrenome" class="regSobrenome required" placeholder="Sobrenome" oninput="registerSobrenome()">
-                    <span class="span-required">Preencha o sobrenome corretamente!</span>
+                    <input type="text" name="telefone" class="required" placeholder="Telefone">
+                    <span class="span-required">Preencha o telefone corretamente!</span>
 
                     <input type="email" name="email" class="regEmail required" placeholder="E-mail" oninput="registerEmail()">
                     <span class="span-required">Preencha o email corretamente!</span>

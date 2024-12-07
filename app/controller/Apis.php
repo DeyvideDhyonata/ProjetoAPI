@@ -1,8 +1,8 @@
 <?php
 
-require_once "../database/conn.php";
+require_once "../database/conexao.php";
 
-require_once "./Users.php";
+// require_once "./Users.php";
 
 session_set_cookie_params([
     'httpOnly' => true,
@@ -13,9 +13,9 @@ session_start();
 
 header('Content-Type: application/json');
 
-class selectApi extends Users{
+class selectApi{
 
-    private $conn, $dados;
+    private $conn, $dados, $tipo_usuario;
 
     public function __construct(){
 
@@ -27,23 +27,23 @@ class selectApi extends Users{
     public function InsertApi(){
 
         $this->dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $tipo_usuario = $this->tipo_usuario = "usuario";
 
-        if($this->dados && isset($this->dados['nome']) && isset($this->dados['sobrenome']) && isset($this->dados['email']) && isset($this->dados['senha'])){
+        if($this->dados && isset($this->dados['nome_completo']) && isset($this->dados['telefone']) && isset($this->dados['email']) && isset($this->dados['senha'])){
 
-            $this->setNome($this->conn->real_escape_string($this->dados['nome']));
-            $this->setSobrenome($this->conn->real_escape_string($this->dados['sobrenome']));
-            $this->setEmail($this->conn->real_escape_string($this->dados['email']));
+            $nome_completo = $this->conn->real_escape_string($this->dados['nome_completo']);
+            $telefone = $this->conn->real_escape_string($this->dados['telefone']);
+            $email = $this->conn->real_escape_string($this->dados['email']);
             $senha = $this->conn->real_escape_string($this->dados['senha']);
 
             $hash = password_hash($senha, PASSWORD_DEFAULT);
 
             try{
 
-                $sql = "SELECT email FROM dados_usuarios WHERE email = ?";
+                $sql = "SELECT email FROM usuarios WHERE email = ?";
 
                 $sql_query = $this->conn->prepare($sql);
 
-                $email = $this->getEmail();
 
                 $sql_query->bind_param("s", $email);
                 $sql_query->execute();
@@ -61,17 +61,10 @@ class selectApi extends Users{
 
                 }else{
 
-                    // $sql = "INSERT INTO dados_usuarios (nome, sobrenome, email, senha, foto, video) VALUES ('" . $this->getNome() . "', '" . $this->getSobrenome() . "', '" . $this->getEmail() . "', '" . "$hash" . "', '" . $this->getFoto() . "', '" . $this->getVideo() . "')";
-
-                    $sql = "INSERT INTO dados_usuarios(nome, sobrenome, email, senha, foto, video) VALUES(?, ?, ?, ?, ?, ?)";
+                    $sql = "INSERT INTO usuarios(tipo_usuario, nome_completo, email, senha, telefone) VALUES(?, ?, ?, ?, ?)";
                     $sql_query = $this->conn->prepare($sql);
 
-                    $nome = $this->getNome();
-                    $sobrenome = $this->getSobrenome();
-                    $foto = $this->getFoto();
-                    $video = $this->getVideo();
-
-                    $sql_query->bind_param("ssssss", $nome, $sobrenome, $email, $hash, $foto, $video);
+                    $sql_query->bind_param("sssss", $tipo_usuario, $nome_completo, $email, $hash, $telefone);
 
                     if($sql_query->execute()){
 
@@ -108,14 +101,12 @@ class selectApi extends Users{
 
         if($this->dados && isset($this->dados['email']) && isset($this->dados['senha'])){
 
-            $this->setEmail($this->conn->real_escape_string($this->dados['email']));
-            $this->setSenha($this->conn->real_escape_string($this->dados['senha']));    
-
-            $email = $this->getEmail();
-
+            $email = $this->conn->real_escape_string($this->dados['email']);
+            $senha = $this->conn->real_escape_string($this->dados['senha']);    
+           
             try{
 
-                $sql = "SELECT nome, sobrenome, email, senha, foto, video FROM dados_usuarios WHERE email = ?";
+                $sql = "SELECT * FROM usuarios WHERE email = ?";
 
                 $sql_query = $this->conn->prepare($sql);
 
@@ -127,18 +118,19 @@ class selectApi extends Users{
 
                     $result = $row->fetch_assoc();
 
-                    if(password_verify($this->getSenha(), $result['senha'])){
+                    if(password_verify($senha, $result['senha'])){
 
                         session_regenerate_id(true);
 
-                        $_SESSION['nome'] = $result['nome'];
-                        $_SESSION['sobrenome'] = $result['sobrenome'];
+                        $_SESSION['tipo_usuario'] = $result['tipo_usuario'];
+                        $_SESSION['nome_completo'] = $result['nome_completo'];
                         $_SESSION['email'] = $result['email'];
-                        $_SESSION['foto'] = $result['foto'];
-                        $_SESSION['video'] = $result['video'];
+                        $_SESSION['senha'] = $result['senha'];
+                        $_SESSION['telefone'] = $result['telefone'];
 
                         $msg = [
                             'erro' => false,
+                            'usuario' => $result['tipo_usuario'],
                             'msg' => "Usuário logado com sucesso!!",
                         ];
 
@@ -147,6 +139,7 @@ class selectApi extends Users{
 
                         $msg = [
                             'erro' => true,
+                            'usuario' => $result['tipo_usuario'],
                             'msg' => "E-mail ou Senha incorretos!!",
                         ];
 
@@ -212,6 +205,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             "erro" => true, 
             "msg" => "Ação não suportada"
         ];
+
         echo json_encode($msg);
         
         break;
