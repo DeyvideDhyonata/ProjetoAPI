@@ -195,3 +195,11 @@ input[name="contact"]::placeholder {
     text-align: left;
 }
 
+#spanSuccess {
+    display: none;
+}
+  
+  #spanFailed {
+    display: none;
+}
+

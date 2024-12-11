@@ -211,26 +211,12 @@ img.header__image-bg {
   background-repeat: no-repeat;
   background-size: contain;
 }
-
-.intro__card:nth-child(1) div {
-  background-image: url("assets/intro-1-bg.png");
-}
-
-.intro__card:nth-child(2) div {
-  background-image: url("assets/intro-2-bg.png");
-}
-
-.intro__card:nth-child(3) div {
-  background-image: url("assets/intro-3-bg.png");
-}
-
 .intro__card div img {
   width: 50%;
   height: 50%;
    margin-left: 70px;
 }
 
-/*serviços pet, contac etc*/
 .intro__card h4 {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;

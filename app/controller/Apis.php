@@ -122,6 +122,7 @@ class selectApi{
 
                         session_regenerate_id(true);
 
+                        $_SESSION['id'] = $result['id'];
                         $_SESSION['tipo_usuario'] = $result['tipo_usuario'];
                         $_SESSION['nome_completo'] = $result['nome_completo'];
                         $_SESSION['email'] = $result['email'];
@@ -165,9 +166,61 @@ class selectApi{
         }
     }
 
-    public function UpdateApi(){
+    public function Servico(){
 
+        $this->dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+        if ($this->dados && isset($this->dados['petName']) && isset($this->dados['petRaca']) && isset($this->dados['servico']) && isset($this->dados['agendamento'])) {
+            
+            // Filtragem dos dados
+            $petName = $this->conn->real_escape_string($this->dados['petName']);
+            $petRaca = $this->conn->real_escape_string($this->dados['petRaca']);
+            $agendamento = $this->conn->real_escape_string($this->dados['agendamento']);
+            $servico = $this->conn->real_escape_string($this->dados['servico']);
+
+            $id_usuario = $_SESSION['id'];
+
+            $servico = strtr($servico, [
+                'ç' => 'c', 'Ç' => 'C', 
+                'ã' => 'a', 'Ã' => 'A', 
+                'á' => 'a', 'Á' => 'A',
+                'é' => 'e', 'É' => 'E',
+                'í' => 'i', 'Í' => 'I',
+                'ó' => 'o', 'Ó' => 'O',
+                'ò' => 'o', 'Ò' => 'O',
+                'ú' => 'u', 'Ú' => 'U',
+                'à' => 'a', 'À' => 'A',
+                'è' => 'e', 'È' => 'E',
+                'ê' => 'e', 'Ê' => 'E',
+                'í' => 'i', 'Í' => 'I'
+            ]);
+
+            $servicoLimpo = preg_replace('/[^a-zA-Z0-9\s]/', '', $servico);
+
+            $sql = "INSERT INTO servicos(id_usuario, nome_animal, raca_animal, data_servico, tipo_servico) VALUES(?, ?, ?, ?, ?)";
+                    $sql_query = $this->conn->prepare($sql);
+
+                    $sql_query->bind_param("sssss", $id_usuario, $petName, $petRaca, $agendamento, $servico);
+
+                    if($sql_query->execute()){
+
+                        $msg = [
+                            'erro' => false,
+                            'msg' => "Serviço cadastrado com sucesso!!"
+                        ];
         
+                        echo json_encode($msg);
+                    }else{
+
+                        $msg = [
+                            'erro' => true,
+                            'msg' => "Erro ao tentar cadastrar seu serviço!!"
+                        ];
+            
+                        echo json_encode($msg);
+                    }
+
+        }
     }
 
     public function DeleteApi(){
@@ -191,8 +244,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $api->SelectApi();
             break;
 
-        case 'update':
-                $api->UpdateApi();
+        case 'servico':
+                $api->Servico();
             break;
 
         case 'delete':

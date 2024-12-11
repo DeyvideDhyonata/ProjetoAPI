@@ -1,22 +1,24 @@
 <?php
 
-// session_start();
+session_start();
 
-// if(!isset($_SESSION['email']) == TRUE){
+if(!isset($_SESSION['email']) == TRUE){
 
-//     unset($_SESSION['tipo_usuario']);
-//     unset($_SESSION['nome_completo']);
-//     unset($_SESSION['email']);
-//     unset($_SESSION['telefone']);
+    unset($_SESSION['tipo_usuario']);
+    unset($_SESSION['nome_completo']);
+    unset($_SESSION['email']);
+    unset($_SESSION['telefone']);
 
-//     sleep(1);
-//     header("Location: ../../index.php");
-// }
+    echo "Você precisa fazer login para utilizar está página!!";
+
+    sleep(1);
+    header("Location: ../../index.php");
+}
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,25 +30,13 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <link rel="stylesheet" href="styleh.css" />
-    <title>Pet TchuTchucão</title>
+    <link rel="stylesheet" href="../assets/css/secondStyle.css" />
+    <title>PetShop TchuTchucão</title>
   </head>
   <body>
-    <nav>
-      <div class="nav__header">
-        <div class="nav__logo">
-          <a href="#">Pet TchuTchucão</a>
-        </div>
-        <div class="nav__menu__btn" id="menu-btn">
-          <i class="ri-menu-line"></i>
-        </div>
-      </div>
-      <ul class="nav__links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#service">Serviços</a></li>
-        <li><a href="#store">Produtos</a></li>
-      </ul>
-    </nav>
+
+  <?php include_once("./navbar.php") ?>
+
     <header id="home">
       <div class="section__container header__container">
         <div class="header__content">
@@ -60,55 +50,62 @@
         </div>
         <div class="header__image">
           <img
-            src="header-bg.png"
+            src="../assets/img/header-bg.png"
             alt="header-bg"
             class="header__image-bg"
           />
-          <img src="header.png" alt="header" />
+          <img src="../assets/img/header.png" alt="header" />
         </div>
       </div>
       <div class="header__bottom"></div>
     </header>
 
     <section class="section__container service__container" id="service">
+
       <h2 class="section__header">Conheça nossos serviços</h2>
+
       <div class="service__flex">
+
         <div class="service__card">
           <div>
-            <img src="service-1.png" alt="service" />
+            <img src="../assets/img/service-1.png" alt="service" />
           </div>
           <p>Cuidados Veterinário</p>
-          <a href="#">Agende Aqui</a>
+          <a href="./servicos.php?service=CuidadosVeterinário">Agende Aqui</a>
         </div>
+
         <div class="service__card">
           <div>
-            <img src="service-2.png" alt="service" />
+            <img src="../assets/img/service-2.png" alt="service" />
           </div>
           <p>Vacinação</p>
-          <a href="#">Agende Aqui</a>
+          <a href="./servicos.php?service=Vacinação">Agende Aqui</a>
         </div>
+
         <div class="service__card">
           <div>
-            <img src="service-3.png" alt="service" />
+            <img src="../assets/img/service-3.png" alt="service" />
           </div>
           <p> Banho e Tosa</p>
-          <a href="#">Agende Aqui</a>
+          <a href="./servicos.php?service=BanhoeTosa">Agende Aqui</a>
         </div>
         
         <div class="service__card">
           <div>
-            <img src="service-4.png" alt="service" />
+            <img src="../assets/img/service-4.png" alt="service" />
           </div>
           <p>Pet Sitting</p>
-          <a href="#">Agende Aqui</a>
+          <a href="./servicos.php?service=PetSitting">Agende Aqui</a>
         </div>
+
         <div class="service__card">
           <div>
-            <img src="service-5.png" alt="service" />
+            <img src="../assets/img/service-5.png" alt="service" />
           </div>
           <p>Dog Walking</p>
-          <a href="#">Agende Aqui</a>
+          <a href="./servicos.php?service=DogWalking">Agende Aqui</a>
         </div>
+
       </div>
     </section>
 
@@ -117,10 +114,10 @@
       <h2 class="section__header">O que podemos fazer por você</h2>
       <div class="about__row">
         <div class="about__image">
-          <img src="about-1.jpg" alt="about" />
+          <img src="../assets/img/about-1.jpg" alt="about" />
         </div>
         <div class="about__content">
-          <span><img src="about-1-icon.png" alt="about-icon" /></span>
+          <span><img src="../assets/img/about-1-icon.png" alt="about-icon" /></span>
           <h4>Deixe-nos ajudá-lo com a saúde do seu pet!</h4>
           <p>
             Nosso pessoal especializado
@@ -135,7 +132,7 @@
         <h2 class="section__header">Produtos em destaque</h2>
         <div class="product__grid">
           <div class="product__card">
-            <img src="product-1.jpg" alt="product" />
+            <img src="../assets/img/product-1.jpg" alt="product" />
             <h4>Sacos de lixo para cachorro</h4>
             <p>
                 Sacos de lixo convenientes e ecológicos para facilitar o desperdício de animais de estimação disposição.
@@ -143,7 +140,7 @@
             <h3>R$ 29,50</h3>
           </div>
           <div class="product__card">
-            <img src="product-2.png" alt="product" />
+            <img src="../assets/img/product-2.png" alt="product" />
             <h4>Acessórios para Pets</h4>
             <p>
                 Explore a nossa gama de acessórios elegantes e funcionais para o seu amigos peludos.
@@ -151,7 +148,7 @@
             <h3>R$ 49,99 </h3>
           </div>
           <div class="product__card">
-            <img src="product-3.jpg" alt="product" />
+            <img src="../assets/img/product-3.jpg" alt="product" />
             <h4>Ração para Gatos</h4>
             <p>
                 Alimentos nutritivos e deliciosos para manter seu animal de estimação saudável e feliz.
@@ -163,11 +160,14 @@
     </section>
 
     <section class="section__container intro__container">
+
       <h2 class="section__header">Nos Conheça</h2>
+
       <div class="intro__grid">
+
         <div class="intro__card">
           <div class="intro__image">
-            <img src="intro-1.png" alt="intro" />
+            <img src="../assets/img/intro-1.png" alt="intro" />
           </div>
           <h4>Especialistas Pet</h4>
           <p>
@@ -175,18 +175,21 @@
           </p>
           <a href="#">Clique Aqui</a>
         </div>
+
         <div class="intro__card">
           <div class="intro__image">
-            <img src="intro-2.png" alt="intro" />
+            <img src="../assets/img/intro-2.png" alt="intro" />
           </div>
           <h4>Serviços Vet</h4>
           <p>
             Oferecendo uma ampla gama de serviços veterinários para manter seus animais de estimação saudável e feliz.
           </p>
+          <a href="#">Clique Aqui</a>
         </div>
+
         <div class="intro__card">
           <div class="intro__image">
-            <img src="intro-3.png" alt="intro" />
+            <img src="../assets/img/intro-3.png" alt="intro" />
           </div>
           <h4>Contate-nos</h4>
           <p>
@@ -194,6 +197,7 @@
           </p>
           <a href="#">Clique Aqui</a>
         </div>
+
       </div>
     </section>
 

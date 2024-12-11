@@ -28,6 +28,8 @@ CREATE TABLE `usuarios`(
 CREATE TABLE `servicos` (
 	`id` int(11) primary key auto_increment,
 	`id_usuario` varchar(22),
+	`nome_animal` varchar(100),
+	`raca_animal` varchar(100),
 	`data_servico` varchar(22),
 	`tipo_servico` varchar(50) 
 );
