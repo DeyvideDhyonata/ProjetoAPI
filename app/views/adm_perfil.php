@@ -17,7 +17,18 @@ if(!isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] != "adm"){
 $conexao = new Conexao();
 $conn = $conexao->getConnection();
 
-$sql = "SELECT * FROM usuarios u";
+$sql = "SELECT 
+            u.id,
+            u.nome_completo,
+            u.email,
+            u.telefone,
+            s.id_usuario,
+            s.nome_animal,
+            s.raca_animal, 
+            s.data_servico,
+            s.tipo_servico
+        FROM usuarios u
+        INNER JOIN servicos s ON u.id = s.id_usuario";
 
 $result = $conn->query($sql);
 
@@ -33,59 +44,9 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../assets/css/secondStyle.css"> -->
+    <link rel="stylesheet" href="../assets/css/stylePerfil.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>PetShop TchuTchucão - Administrador</title>
-
-    <style>
-      body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-
-    .admin-container {
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      text-align: center;
-      color: #555;
-      margin-bottom: 20px;
-    }
-
-    .admin-table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .admin-table th, .admin-table td {
-      padding: 12px 15px;
-      text-align: left;
-      border: 1px solid #ddd;
-    }
-
-    .admin-table th {
-      background-color: #f4f4f4;
-      color: #555;
-      font-weight: bold;
-    }
-
-    .admin-table tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-
-    .admin-table tr:hover {
-      background-color: #f1f1f1;
-    }
-
-  </style>
 </head>
 <body>
 
@@ -98,6 +59,7 @@ if (!$result) {
     <table class="admin-table">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nome Completo</th>
           <th>Email</th>
           <th>Telefone</th>
@@ -116,9 +78,14 @@ if (!$result) {
               while ($row = $result->fetch_assoc()) {
                 
                   echo "<tr>";
+                    echo "<td>" . $row['id'] . "</td>";
                     echo "<td>" . $row['nome_completo'] . "</td>";
                     echo "<td>" . $row['email'] . "</td>";
                     echo "<td>" . $row['telefone'] . "</td>";
+                    echo "<td>" . $row['nome_animal'] . "</td>";
+                    echo "<td>" . $row['raca_animal'] . "</td>";
+                    echo "<td>" . $row['data_servico'] . "</td>";
+                    echo "<td>" . $row['tipo_servico'] . "</td>";
                   echo "</tr>";
               }
           } else {
