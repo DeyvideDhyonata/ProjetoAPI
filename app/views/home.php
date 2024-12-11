@@ -205,18 +205,15 @@ if(!isset($_SESSION['email']) == TRUE){
       <div class="section__container footer__container">
         <div class="footer__col">
           <div class="footer__logo">
-            <a href="#">TchuTchucão PetShop</a>
+            <a href="./home.php">TchuTchucão PetShop</a>
           </div>
         </div>
         <div class="footer__col">
           <h4>Company</h4>
           <ul class="footer__links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Sobre Nós</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Produtos</a></li>
-            <li><a href="#">Faq</a></li>
-            <li><a href="#">Contate-Nos</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#service">Serviços</a></li>
+            <li><a href="#store">Produtos</a></li>
           </ul>
         </div>
         <div class="footer__col">
