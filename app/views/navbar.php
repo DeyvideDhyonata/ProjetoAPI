@@ -11,7 +11,7 @@
 <nav>
       <div class="nav__header">
         <div class="nav__logo">
-          <a href="./home.php">Pet TchuTchucão</a>
+          <a href="./home.php">PetShop TchuTchucão</a>
         </div>
         <div class="nav__menu__btn" id="menu-btn">
           <i class="ri-menu-line"></i>

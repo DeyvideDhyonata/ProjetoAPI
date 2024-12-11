@@ -223,9 +223,9 @@ class selectApi{
         }
     }
 
-    public function Excluir(){
+    public function Update(){
 
-
+        
     }
 }
 
@@ -248,8 +248,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $api->Servico();
             break;
 
-        case 'delete':
-                $api->Excluir();
+        case 'update':
+                $api->Update();
             break;
 
         default:

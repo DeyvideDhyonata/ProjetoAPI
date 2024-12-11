@@ -12,44 +12,6 @@ body {
     min-height: 110vh;
 }
 
-.navbar {
-    position: fixed;
-    width: 95%;
-    border-radius: 2px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px;
-    background-color: #128d87;
-    z-index: 3;
-    border: 1px solid #FFFEFC;
-}
-
-.navbar a {
-    color: #FFFEFC;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.navbar a:hover {
-    color: #1BBCB6;
-}
-
-.navbar .user-icon {
-    font-size: 25px;
-    transition: color 0.3s ease;
-}
-
-.navbar .user-icon i {
-    color: inherit;
-}
-
-.navbar .user-icon:hover i {
-    color: #1BBCB6;
-}
-
 .container {
     position: relative;
     display: flex;
@@ -64,7 +26,6 @@ body {
     position: relative;
     background: linear-gradient(#128d87, #216966);
     padding: 30px;
-    border: 1px solid #FFFEFC;
     border-radius: 5px;
     width: 50%;
     height: 70vh;

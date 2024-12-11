@@ -30,23 +30,12 @@ if(isset($_GET['service'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/form_style.css">
+    <link rel="shortcut icon" href="../assets/img/petshop.png" type="image/x-icon">
     <title>PetShop TchuTchucão - Serviços</title>
 </head>
 <body>
 
 <?php include_once("./navbar.php") ?>
-
-<!-- <header class="navbar">
-    <div class="logo">Logo</div>
-    <nav>
-      <a href="#" aria-label="Página inicial">Home</a>
-      <a href="#" aria-label="Serviços disponíveis">Serviços</a>
-      <a href="#" aria-label="Sair do sistema">Sair</a>
-    </nav>
-    <div class="user-icon" aria-label="Perfil do usuário">
-      <i class="fas fa-user" style="color: #0c1d40;"></i>
-    </div>
-  </header> -->
 
   <main class="container">
 
@@ -69,10 +58,9 @@ if(isset($_GET['service'])){
         <input type="text" name="petRaca" placeholder="Raça do Animal" required>
 
         <input type="text" name="servico" placeholder="Tipo de Serviço" <?php echo "value=$service"?>>
-        <!-- <input type="tel" name="contact" placeholder="Contato" id="telefone" pattern="\(\d{2}\) \d{5}-\d{4}" required> -->
         
         <input type="date" name="agendamento" required>
-        <!-- <input type="password" name="password" placeholder="Senha" minlength="8" required> -->
+    
         <button type="submit">Agendar</button>
       </form>
       <div class="illustration">
