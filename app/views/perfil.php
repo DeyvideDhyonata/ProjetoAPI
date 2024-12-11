@@ -80,7 +80,7 @@ if($result->num_rows >0){
     <div class="perfil-container">
         <h1>Perfil do Usuário</h1>
 
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form class="formsUpdate" action="" method="POST" enctype="multipart/form-data">
             <div class="input-group">
                 <label for="nome_completo">Nome Completo</label>
                 <input type="text" id="nome_completo" name="nome_completo" value="<?php echo $userData['nome_completo']; ?>" required>
@@ -126,6 +126,8 @@ if($result->num_rows >0){
             </tbody>
         </table>
     </div>
+
+    <script src="../assets/js/scriptUpdate.js"></script>
 
     <script>
         function deletarServico(servicoId) {

@@ -225,7 +225,64 @@ class selectApi{
 
     public function Update(){
 
+        $this->dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         
+        if ($this->dados && isset($this->dados['email']) && isset($this->dados['nome_completo']) && isset($this->dados['telefone'])){
+
+            $email = $this->dados['email'];
+            $nome = $this->dados['nome_completo'];
+            $telefone = $this->dados['telefone'];
+
+            $id = $_SESSION['id'];
+
+            $sql = "SELECT * FROM usuarios WHERE id = ?";
+
+            $sql_query = $this->conn->prepare($sql);
+
+            $sql_query->bind_param("i", $id);
+            $sql_query->execute();
+            $row = $sql_query->get_result();
+
+            if($row->num_rows >0){
+
+                $result = $row->fetch_assoc();
+
+                $novoEmail = $email != $result['email'] ? $email : $result['email'];
+                $novoNome = $nome != $result['nome_completo'] ? $nome : $result['nome_completo'];
+                $novoTelefone = $telefone != $result['telefone'] ? $telefone : $result['telefone'];
+
+                $sql = "UPDATE usuarios SET nome_completo = ?, email = ?, telefone = ? WHERE id = ?";
+
+                $sql_query = $this->conn->prepare($sql);
+
+                $sql_query->bind_param("ssss", $novoNome, $novoEmail, $novoTelefone, $id);
+                $ex = $sql_query->execute();
+
+                if($ex){
+
+                    $msg = [
+                        'erro' => false,
+                        'msg' => "Dados atualizados com sucesso!!"
+                    ];
+
+                    echo json_encode($msg);
+                    
+                }else{
+
+                    $msg = [
+                        'erro' => true,
+                        'msg' => "Erro ao tentar atualizar os Dados"
+                    ];
+
+                    echo json_encode($msg);
+                }
+
+            }else{
+
+                echo json_encode("Nâo trouxe nada");
+            }
+
+        }
     }
 }
 
