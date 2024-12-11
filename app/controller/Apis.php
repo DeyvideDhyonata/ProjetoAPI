@@ -223,7 +223,7 @@ class selectApi{
         }
     }
 
-    public function DeleteApi(){
+    public function Excluir(){
 
 
     }
@@ -249,7 +249,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             break;
 
         case 'delete':
-                $api->DeleteApi();
+                $api->Excluir();
             break;
 
         default:

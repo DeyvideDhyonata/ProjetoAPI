@@ -118,12 +118,36 @@ if($result->num_rows >0){
                     echo "<td>" . $row['id'] . "</td>";
                     echo "<td>" . $row['tipo_servico'] . "</td>";
                     echo "<td>" . $row['tipo_servico'] . "</td>";
-                    echo "<td><a href='editar_servico.php?id=" . $row['id'] . "'>Editar</a></td>";
+                    echo "<td><a class='btn btn-danger' onclick='deletarServico(" . $row['id_usuario'] . ")''>Excluir</a></td>";
                     echo "</tr>";
                 }
                 ?>
             </tbody>
         </table>
     </div>
+
+    <script>
+        function deletarServico(servicoId) {
+            if (confirm('Tem certeza que deseja deletar este serviço?')) {
+                fetch(`../model/alunoDelet.php?id=${servicoId}`, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao deletar o serviço.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert(data.message);
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Não foi possível deletar o serviço.');
+                });
+            }
+        }
+    </script>
 </body>
 </html>

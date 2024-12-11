@@ -136,7 +136,7 @@ class Api{
             $conn = $instancia->getConnection();
         }
 
-        $sql = "DELETE FROM usuario WHERE id = ?";
+        $sql = "DELETE FROM servicos WHERE id_usuario = ? LIMIT 1";
 
         $stmt = $conn->prepare($sql);
         
