@@ -69,6 +69,8 @@ if($result->num_rows >0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/stylePerfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="../assets/img/petshop.png" type="image/x-icon">
     <title>PetShop TchuTchucão - Perfil</title>
 </head>
@@ -81,6 +83,9 @@ if($result->num_rows >0){
         <h1>Perfil do Usuário</h1>
 
         <form class="formsUpdate" action="" method="POST" enctype="multipart/form-data">
+            <div id="spanSuccess" class="alert-success m-3" role='alert'>
+                <span>Usuário atualizado com sucesso!!</span>
+            </div>
             <div class="input-group">
                 <label for="nome_completo">Nome Completo</label>
                 <input type="text" id="nome_completo" name="nome_completo" value="<?php echo $userData['nome_completo']; ?>" required>

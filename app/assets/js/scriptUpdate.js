@@ -1,4 +1,5 @@
 const formsUpdate = document.querySelector('.formsUpdate');
+const spanSuccess = document.getElementById('spanSuccess');
 
 formsUpdate.addEventListener('submit', async (e) =>{
 
@@ -16,21 +17,25 @@ formsUpdate.addEventListener('submit', async (e) =>{
         const resposta = await dados.json();
         console.log(resposta);
 
-        // if(resposta['erro'] === false){
+        if(resposta['erro'] === false){
 
-        //     alertLogin_Sucesso.style.display = "block";
-        //     alertLogin_Sucesso.innerHTML = resposta['msg'];
+            spanSuccess.style.display = "block";
+
+            setTimeout(() => {
+                spanSuccess.style.display = "none";
+            }, 3000);
 
 
-        // }else{
+        } else{
 
-        //     alertLogin_Falha.style.display = "block";
-        //     alertLogin_Falha.innerHTML = resposta['msg'];
+            console.log("Erro");
+            // alertLogin_Falha.style.display = "block";
+            // alertLogin_Falha.innerHTML = resposta['msg'];
 
-        //     setTimeout(() => {
-        //         alertLogin_Falha.style.display = "none";
-        //     }, 3000);
-        // }
+            // setTimeout(() => {
+            //     alertLogin_Falha.style.display = "none";
+            // }, 3000);
+        }
     }catch(error){
 
         console.error('Error: ', error.message);

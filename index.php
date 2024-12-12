@@ -30,7 +30,7 @@
 
                     <span>Digite suas credencias para entrar</span>
 
-                    <div class='alertCorreto alert-success' role='alert'>
+                    <div class='spanSuccess alertCorreto alert-success' role='alert'>
                         <span></span>
                     </div>
 
@@ -75,7 +75,7 @@
                     <input type="text" name="nome_completo" class="regNome required" placeholder="Nome Completo" oninput="registerNome()">
                     <span class="span-required">Preencha o nome corretamente!</span>
 
-                    <input type="text" name="telefone" class="required" placeholder="Telefone">
+                    <input type="text" name="telefone" class="required" placeholder="Telefone" oninput="registerSobrenome()">
                     <span class="span-required">Preencha o telefone corretamente!</span>
 
                     <input type="email" name="email" class="regEmail required" placeholder="E-mail" oninput="registerEmail()">

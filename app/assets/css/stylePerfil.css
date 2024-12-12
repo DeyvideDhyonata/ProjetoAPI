@@ -9,6 +9,15 @@ h1 {
     margin-top: 20px;
 }
 
+.alert-success {
+  display: none;
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+  width: 30%;
+  text-align: center;
+}
+
 .perfil-container {
     width: 80%;
     margin: 0 auto;
